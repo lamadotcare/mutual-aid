@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
-  taggable_array :tags
   extend Mobility
+  taggable_array :tags
+
   translates :title
   translates :description, type: :text
 
@@ -15,6 +16,9 @@ class Listing < ApplicationRecord
   validates :type, presence: true
 
   enum state: { received: 0, fulfilled: 1 }
+
+  # TODO: this won't update an existing person
+  accepts_nested_attributes_for :person
 
   def name
     "#{type}: #{tags}"
