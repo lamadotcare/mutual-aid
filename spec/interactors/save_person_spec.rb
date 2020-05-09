@@ -9,6 +9,8 @@ RSpec.describe SavePerson do
     id: current_person&.id,
     preferred_contact_method: contact_method.id,
     email: 'we@together.coop',
+    first_name: 'Harriet Tubman',
+    phone: '',
     location: {
       id: current_location&.id,
       city: '',

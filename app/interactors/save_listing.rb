@@ -1,10 +1,10 @@
 class SaveListing < BaseInteractor
   record :service_area
+  hash   :person, strip: false
+
   string :description
   string :title
   string :type
-
-  hash :person, strip: false
 
   # todo: add other fields here and in nested interactors
 
