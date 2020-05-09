@@ -27,14 +27,16 @@
           name="listing[service_area]"
         />
 
+        <!-- TODO: some visual demarcation of logical sections -->
+
         <b-field
-          :label-for="withPersonPrefix('name')"
+          :label-for="withPersonPrefix('first_name')"
           label="Name"
           custom-class="required-field"
         >
           <b-input
-            v-model="person.name"
-            :name="withPersonPrefix('name')"
+            v-model="person.first_name"
+            :name="withPersonPrefix('first_name')"
             required
           />
         </b-field>
@@ -46,6 +48,12 @@
           v-bind:contactFields="person"
           v-on:preference-changed="(value) => preferredContactMethodId = value"
           v-on:field-changed="(field, value) => person[field] = value"
+        />
+        <SpacerField />
+
+        <LocationFields
+          fieldNamePrefix="listing[person][location]"
+          v-bind="person.location"
         />
         <SpacerField />
 
@@ -66,11 +74,18 @@ import {partial} from 'utils/function'
 import {fieldNameWithPrefix} from 'utils/form'
 import AuthTokenInput from 'components/AuthTokenInput'
 import ContactFields from './offer/ContactFields'
+import LocationFields from './offer/LocationFields'
 import ServiceAreaField from './offer/ServiceAreaField'
 import SpacerField from 'components/SpacerField'
 
 export default {
-  components: {AuthTokenInput, ContactFields, ServiceAreaField, SpacerField},
+  components: {
+    AuthTokenInput,
+    ContactFields,
+    LocationFields,
+    ServiceAreaField,
+    SpacerField
+  },
   props: {
     offer: Object,
     service_areas: Array,
