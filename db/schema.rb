@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_054235) do
+ActiveRecord::Schema.define(version: 2020_05_09_181358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,9 @@ ActiveRecord::Schema.define(version: 2020_05_09_054235) do
     t.string "neighborhood"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "locationable_type", null: false
+    t.bigint "locationable_id", null: false
+    t.index ["locationable_type", "locationable_id"], name: "index_locations_on_locationable_type_and_locationable_id"
   end
 
   create_table "matches", force: :cascade do |t|
